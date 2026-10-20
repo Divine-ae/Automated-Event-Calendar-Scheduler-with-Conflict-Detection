@@ -1,0 +1,238 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChronoSync | Smart Scheduler</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <aside class="sidebar">
+        <h2 class="logo">◈ ChronoSync</h2>
+
+        <p class="menu-label">WORKSPACE</p>
+        <nav>
+            <a href="#" class="active">▦ Dashboard</a>
+            <a href="#calendar">▣ Calendar</a>
+            <a href="#events">◷ My Events</a>
+            <a href="#conflicts">⚡ Conflicts</a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="avatar">CS</div>
+            <div>
+                <strong>My Workspace</strong>
+                <p>Personal Scheduler</p>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <div>
+                <p class="eyebrow">YOUR PRODUCTIVITY HUB</p>
+                <h1>Dashboard</h1>
+                <p class="muted">Plan smarter. Never double-book.</p>
+            </div>
+            <div class="top-actions">
+                <span class="status">● System Ready</span>
+                <a href="#add-event" class="primary-btn">+ New Event</a>
+            </div>
+        </header>
+
+        <section class="stats">
+            <article class="stat-card">
+                <span class="stat-icon purple">▦</span>
+                <p>Total Events</p>
+                <h2>12</h2>
+                <small>This week</small>
+            </article>
+
+            <article class="stat-card">
+                <span class="stat-icon blue">◷</span>
+                <p>Upcoming</p>
+                <h2>04</h2>
+                <small>Next 24 hours</small>
+            </article>
+
+            <article class="stat-card">
+                <span class="stat-icon green">✓</span>
+                <p>Free Time Slots</p>
+                <h2>08</h2>
+                <small>Available this week</small>
+            </article>
+
+            <article class="stat-card">
+                <span class="stat-icon orange">⚡</span>
+                <p>Conflicts</p>
+                <h2>01</h2>
+                <small>Sample dashboard data</small>
+            </article>
+        </section>
+
+        <section class="content-grid">
+
+            <article class="panel calendar-panel" id="calendar">
+                <div class="panel-heading">
+                    <div>
+                        <h2>Weekly Schedule</h2>
+                        <p class="muted">Your week at a glance</p>
+                    </div>
+                    <span class="week-label">OCT 19 – 25</span>
+                </div>
+
+                <div class="calendar">
+                    <div class="day-heading"></div>
+                    <div class="day-heading">MON <b>19</b></div>
+                    <div class="day-heading">TUE <b>20</b></div>
+                    <div class="day-heading">WED <b>21</b></div>
+                    <div class="day-heading">THU <b>22</b></div>
+                    <div class="day-heading">FRI <b>23</b></div>
+
+                    <div class="time">09:00</div>
+                    <div class="slot purple-event">Team Meeting</div>
+                    <div class="slot"></div>
+                    <div class="slot"></div>
+                    <div class="slot blue-event">Project Work</div>
+                    <div class="slot"></div>
+
+                    <div class="time">10:00</div>
+                    <div class="slot"></div>
+                    <div class="slot blue-event">Study Time</div>
+                    <div class="slot green-event">Free Slot</div>
+                    <div class="slot"></div>
+                    <div class="slot purple-event">Review</div>
+
+                    <div class="time">11:00</div>
+                    <div class="slot"></div>
+                    <div class="slot"></div>
+                    <div class="slot"></div>
+                    <div class="slot"></div>
+                    <div class="slot"></div>
+
+                    <div class="time">12:00</div>
+                    <div class="slot orange-event">Deadline</div>
+                    <div class="slot"></div>
+                    <div class="slot blue-event">Coding</div>
+                    <div class="slot"></div>
+                    <div class="slot"></div>
+
+                    <div class="time">13:00</div>
+                    <div class="slot"></div>
+                    <div class="slot"></div>
+                    <div class="slot"></div>
+                    <div class="slot green-event">Free Slot</div>
+                    <div class="slot"></div>
+                </div>
+
+                <div class="legend">
+                    <span><i class="dot purple-dot"></i> Meetings</span>
+                    <span><i class="dot blue-dot"></i> Work</span>
+                    <span><i class="dot green-dot"></i> Free time</span>
+                    <span><i class="dot orange-dot"></i> Deadlines</span>
+                </div>
+            </article>
+
+            <div class="right-column">
+
+                <article class="panel" id="conflicts">
+                    <div class="panel-heading">
+                        <h2>Conflict Monitor</h2>
+                        <span class="warning-badge">1 Alert</span>
+                    </div>
+
+                    <div class="alert-card">
+                        <span class="alert-icon">!</span>
+                        <div>
+                            <strong>Overlapping events</strong>
+                            <p>Two events may occupy the same time slot.</p>
+                            <small>Sample alert — not live detection</small>
+                        </div>
+                    </div>
+
+                    <a href="#events" class="text-link">View event list →</a>
+                </article>
+
+                <article class="panel" id="events">
+                    <div class="panel-heading">
+                        <h2>Upcoming Events</h2>
+                        <a href="#add-event" class="text-link">+ Add</a>
+                    </div>
+
+                    <div class="event-row">
+                        <div class="event-date">
+                            <b>20</b><span>OCT</span>
+                        </div>
+                        <div>
+                            <strong>Team Stand-up</strong>
+                            <p>09:00 – 10:00 AM</p>
+                        </div>
+                        <span class="event-dot purple-dot"></span>
+                    </div>
+
+                    <div class="event-row">
+                        <div class="event-date">
+                            <b>20</b><span>OCT</span>
+                        </div>
+                        <div>
+                            <strong>Project Development</strong>
+                            <p>11:00 AM – 12:00 PM</p>
+                        </div>
+                        <span class="event-dot blue-dot"></span>
+                    </div>
+
+                    <div class="event-row">
+                        <div class="event-date">
+                            <b>21</b><span>OCT</span>
+                        </div>
+                        <div>
+                            <strong>Code Review</strong>
+                            <p>10:00 – 11:00 AM</p>
+                        </div>
+                        <span class="event-dot green-dot"></span>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <section class="panel add-event" id="add-event">
+            <h2>Quick Event Details</h2>
+            <p class="muted">This is the initial form layout. Saving events will require JavaScript.</p>
+
+            <form>
+                <label>
+                    Event name
+                    <input type="text" placeholder="e.g. Project meeting">
+                </label>
+
+                <label>
+                    Date
+                    <input type="date">
+                </label>
+
+                <label>
+                    Start time
+                    <input type="time">
+                </label>
+
+                <label>
+                    End time
+                    <input type="time">
+                </label>
+
+                <button type="button" class="primary-btn"
+                    onclick="alert('Event saving will be added in the next step!')">
+                    Create Event
+                </button>
+            </form>
+        </section>
+
+        <footer>ChronoSync © 2026 · Smart scheduling, simplified.</footer>
+
+    </main>
+</body>
+</html>
