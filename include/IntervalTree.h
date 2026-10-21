@@ -15,6 +15,15 @@ public:
     std::size_t size() const { return size_; }
     int height() const { return h(root_); }
 
+private:
+    struct Node {
+        TimeSlot slot;
+        int id;
+        int maxEnd;
+        int height;
+        std::unique_ptr<Node> left, right;
+        Node(const TimeSlot& s, int i) : slot(s), id(i), maxEnd(s.end()), height(1) {}
+    };
 
     static int h(const std::unique_ptr<Node>& n) { return n ? n->height : 0; }
     static int mx(const std::unique_ptr<Node>& n) { return n ? n->maxEnd : -1; }
