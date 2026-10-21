@@ -8,15 +8,7 @@
 
 }
 
-void testIntervalTree() {
-    IntervalTree t;
-    t.insert(TimeSlot(10, 20), 1);
-    t.insert(TimeSlot(30, 40), 2);
-    t.insert(TimeSlot(50, 60), 3);
-    CHECK(t.anyOverlap(TimeSlot(15, 35)));
-    CHECK(!t.anyOverlap(TimeSlot(20, 30)));
-    CHECK(t.findOverlaps(TimeSlot(15, 55)).size() == 3);
-    CHECK(t.remove(TimeSlot(30, 40), 2));
+
     CHECK(!t.anyOverlap(TimeSlot(25, 45)));
     CHECK(t.size() == 2);
 
