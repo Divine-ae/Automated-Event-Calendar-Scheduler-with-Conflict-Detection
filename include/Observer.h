@@ -4,8 +4,21 @@
 #include "TimeSlot.h"
 
 // What changed on a calendar (payload sent to observers).
+struct ScheduleChange {
+    std::string owner;
+    std::string eventTitle;
+    TimeSlot oldSlot;
+    TimeSlot newSlot;
+    bool rescheduled;      // false => event was dropped (no free slot found)
+    std::string reason;
+};
 
 // Observer interface.
+class Observer {
+public:
+    virtual ~Observer() = default;
+    virtual void onScheduleChanged(const ScheduleChange& change) = 0;
+};
 
 // Subject: the Notification Service publishes changes to subscribers.
 class NotificationService {
