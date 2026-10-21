@@ -549,4 +549,33 @@ footer {
     .add-event form {
         grid-template-columns: 1fr;
     }
+}   
+.delete-btn {
+    margin-left: auto;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    background-color: #fee2e2;
+    color: #b91c1c;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.delete-btn:hover {
+    background-color: #fecaca;
+}
+
+.edit-btn {
+    margin-left: 8px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    background-color: #dbeafe;
+    color: #1d4ed8;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.edit-btn:hover {
+    background-color: #bfdbfe;
 }
