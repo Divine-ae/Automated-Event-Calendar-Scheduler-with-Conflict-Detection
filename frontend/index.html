@@ -199,40 +199,43 @@
             </div>
         </section>
 
-        <section class="panel add-event" id="add-event">
-            <h2>Quick Event Details</h2>
-            <p class="muted">This is the initial form layout. Saving events will require JavaScript.</p>
+        
+<section class="panel add-event" id="add-event">
+    <h2>Quick Event Details</h2>
+    <p class="muted">Add an event to your schedule.</p>
 
-            <form>
-                <label>
-                    Event name
-                    <input type="text" placeholder="e.g. Project meeting">
-                </label>
+    <form id="event-form">
+        <label>
+            Event name
+            <input type="text" id="event-title"
+                   placeholder="e.g. Project meeting" required>
+        </label>
 
-                <label>
-                    Date
-                    <input type="date">
-                </label>
+        <label>
+            Date
+            <input type="date" id="event-date" required>
+        </label>
 
-                <label>
-                    Start time
-                    <input type="time">
-                </label>
+        <label>
+            Start time
+            <input type="time" id="event-start" required>
+        </label>
 
-                <label>
-                    End time
-                    <input type="time">
-                </label>
+        <label>
+            End time
+            <input type="time" id="event-end" required>
+        </label>
 
-                <button type="button" class="primary-btn"
-                    onclick="alert('Event saving will be added in the next step!')">
-                    Create Event
-                </button>
-            </form>
-        </section>
+        <button type="submit" class="primary-btn">
+            Create Event
+        </button>
+    </form>
+</section>
+
 
         <footer>ChronoSync © 2026 · Smart scheduling, simplified.</footer>
 
     </main>
+    <script src="script.js"></script>
 </body>
 </html>
