@@ -6,11 +6,6 @@
 // What changed on a calendar (payload sent to observers).
 
 // Observer interface.
-class Observer {
-public:
-    virtual ~Observer() = default;
-    virtual void onScheduleChanged(const ScheduleChange& change) = 0;
-};
 
 // Subject: the Notification Service publishes changes to subscribers.
 class NotificationService {
