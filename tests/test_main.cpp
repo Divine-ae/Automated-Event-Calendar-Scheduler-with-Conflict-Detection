@@ -5,10 +5,29 @@
 #include "ConflictDetector.h"
 #include "TaskScheduler.h"
 
+static int failed = 0, total = 0;
+#define CHECK(cond) do { ++total; if (!(cond)) { ++failed; \
+    std::printf("FAIL line %d: %s\n", __LINE__, #cond); } } while (0)
 
+void testTimeSlot() {
+    TimeSlot a(60, 120), b(100, 150), c(120, 180);
+    CHECK(a.overlaps(b));
+    CHECK(!a.overlaps(c));          // half-open: touching is not overlap
+    CHECK(a.duration() == 60);
+    bool threw = false;
+    try { TimeSlot bad(50, 50); } catch (const std::invalid_argument&) { threw = true; }
+    CHECK(threw);
 }
 
-
+void testIntervalTree() {
+    IntervalTree t;
+    t.insert(TimeSlot(10, 20), 1);
+    t.insert(TimeSlot(30, 40), 2);
+    t.insert(TimeSlot(50, 60), 3);
+    CHECK(t.anyOverlap(TimeSlot(15, 35)));
+    CHECK(!t.anyOverlap(TimeSlot(20, 30)));
+    CHECK(t.findOverlaps(TimeSlot(15, 55)).size() == 3);
+    CHECK(t.remove(TimeSlot(30, 40), 2));
     CHECK(!t.anyOverlap(TimeSlot(25, 45)));
     CHECK(t.size() == 2);
 
