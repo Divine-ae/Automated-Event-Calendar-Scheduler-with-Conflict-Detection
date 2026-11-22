@@ -1,6 +1,6 @@
 #  Automated Event & Calendar Scheduler with Conflict Detection
 
-Data Structures & OOP course project (PBL). C++17 backend engine.
+Data Structures & OOP course project (PBL). C++17 scheduling engine with a built-in web server and browser UI.
 
 ## What it does
 - Per-user calendars with add / move / remove events
@@ -9,12 +9,17 @@ Data Structures & OOP course project (PBL). C++17 backend engine.
 - **Strategy pattern**: swappable heuristics (Earliest Deadline First / Shortest Duration First)
 - **Observer pattern**: users are notified when a higher-priority event bumps theirs
 - **Multi-user free slot search** by intersecting each member's free intervals
+- **Web app**: the engine ships with an HTTP/JSON server and a browser UI (week calendar, live conflict warnings, task queue, team slot finder, notification feed)
+- **Persistence**: all calendars, tasks and notifications are saved to `data/chronosync.json`
 
 ## Project structure
 ```
 include/   headers (TimeSlot, Event, Task, IntervalTree, UserCalendar,
-           ConflictDetector, SchedulingStrategy, TaskScheduler, Observer)
-src/       implementations + main.cpp (CLI demo)
+           ConflictDetector, SchedulingStrategy, TaskScheduler, Observer,
+           CalendarService)
+src/       implementations + main.cpp (CLI demo) + server.cpp (web server)
+frontend/  browser UI (index.html, style.css, script.js - no build step)
+third_party/ cpp-httplib (HTTP server) and nlohmann/json (single headers)
 tests/     unit tests (no external framework needed)
 benchmark/ interval tree vs naive linear scan
 docs/      UML class diagram, architecture notes, report, slides
@@ -58,7 +63,7 @@ or with CMake: `mkdir build && cd build && cmake .. && make`
 Add your team name, members, roll numbers and mentor here.
 
 ## Planned next
-- Web / CLI front end
-- Shared group events across calendars
-- Persistent storage (file / SQLite)
+- Recurring events and reminders
+- Authentication for multi-user deployments
+- SQLite storage instead of a JSON file
 - More unit tests and edge cases
