@@ -15,7 +15,6 @@ public:
     const std::string& owner() const { return owner_; }
 
     bool addEvent(const Event& e);                 // false if it conflicts
-    bool removeEvent(int id);
     bool moveEvent(int id, const TimeSlot& newSlot); // false if conflict / not found
     const Event* getEvent(int id) const;
     std::vector<Event> events() const;             // sorted by start time
