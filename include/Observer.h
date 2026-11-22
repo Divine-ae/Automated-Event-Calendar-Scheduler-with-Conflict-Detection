@@ -17,7 +17,7 @@ struct ScheduleChange {
 class Observer {
 public:
     virtual ~Observer() = default;
-    virtual void onScheduleChanged(const ScheduleChange& change) = 0;
+    
 };
 
 // Subject: the Notification Service publishes changes to subscribers.
