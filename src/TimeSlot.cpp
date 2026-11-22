@@ -15,6 +15,9 @@ bool TimeSlot::contains(const TimeSlot& o) const {
     return start_ <= o.start_ && o.end_ <= end_;
 }
 
-
+std::string TimeSlot::toString() const {
+    char buf[32];
+    std::snprintf(buf, sizeof(buf), "%02d:%02d-%02d:%02d",
+                  start_ / 60, start_ % 60, end_ / 60, end_ % 60);
     return buf;
 }
