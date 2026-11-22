@@ -15,7 +15,6 @@ public:
     bool higherPriority(const Task& a, const Task& b) const override {
         if (a.deadline != b.deadline) return a.deadline < b.deadline;
         if (a.priority != b.priority) return a.priority > b.priority;
-        return a.id < b.id;
     }
     const char* name() const override { return "EDF"; }
 };
