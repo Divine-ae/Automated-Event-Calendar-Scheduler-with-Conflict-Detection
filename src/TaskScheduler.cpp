@@ -9,7 +9,11 @@ bool TaskScheduler::lessUrgent(const Task& a, const Task& b) const {
     return strategy_->higherPriority(b, a);
 }
 
-
+void TaskScheduler::addTask(const Task& t) {
+    heap_.push_back(t);
+    std::push_heap(heap_.begin(), heap_.end(),
+                   [this](const Task& a, const Task& b) { return lessUrgent(a, b); });
+}
 
 void TaskScheduler::setStrategy(std::unique_ptr<SchedulingStrategy> s) {
     strategy_ = std::move(s);
