@@ -15,7 +15,7 @@ public:
     void addTask(const Task& t);                         // O(log N)
     void setStrategy(std::unique_ptr<SchedulingStrategy> s); // re-heapifies
     std::size_t pending() const { return heap_.size(); }
-    const char* strategyName() const { return strategy_->name(); }
+   
 
     // Place every pending task into the calendar. Returns tasks that did not fit.
     std::vector<Task> scheduleAll(UserCalendar& cal);
