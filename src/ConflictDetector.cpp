@@ -1,12 +1,7 @@
 #include "ConflictDetector.h"
 #include <algorithm>
 
-bool ConflictDetector::hasConflict(const UserCalendar& cal, const TimeSlot& slot) {
-    return !cal.isFree(slot);
-}
 
-std::vector<Event> ConflictDetector::conflicts(const UserCalendar& cal, const TimeSlot& slot) {
-    return cal.conflictsWith(slot);
 }
 
 static std::vector<TimeSlot> intersect(const std::vector<TimeSlot>& a, const std::vector<TimeSlot>& b) {
