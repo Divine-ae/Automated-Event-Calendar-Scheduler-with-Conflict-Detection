@@ -17,7 +17,7 @@ public:
 
 private:
     struct Node {
-        TimeSlot slot;
+        
         int id;
         int maxEnd;
         int height;
