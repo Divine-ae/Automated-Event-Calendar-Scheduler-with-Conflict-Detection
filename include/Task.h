@@ -3,8 +3,7 @@
 
 // An unscheduled task waiting in the priority queue.
 struct Task {
-    int id;
-    std::string title;
+    int id
     std::string owner;
     int duration;   // minutes
     int deadline;   // minutes from midnight; task must finish by this time
