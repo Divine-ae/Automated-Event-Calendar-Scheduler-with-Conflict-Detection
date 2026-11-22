@@ -1,4 +1,23 @@
+#include "CalendarService.h"
 
+#include <algorithm>
+#include <cstdio>
+#include <filesystem>
+#include <fstream>
+#include <memory>
+#include <set>
+
+#include "json.hpp"
+
+using json = nlohmann::json;
+
+namespace {
+
+std::string nowIso() {
+    std::time_t t = std::time(nullptr);
+    std::tm tm{};
+#ifdef _WIN32
+    gmtime_s(&tm, &t);
 #else
     gmtime_r(&t, &tm);
 #endif
