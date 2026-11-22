@@ -4,3 +4,5 @@ build/
 *.out
 .vscode/
 .idea/
+
+data/
