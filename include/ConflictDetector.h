@@ -12,5 +12,5 @@ public:
     // First slot of 'duration' minutes in [dayStart, dayEnd) where ALL calendars are free.
     static std::optional<TimeSlot> findCommonFreeSlot(
         const std::vector<const UserCalendar*>& calendars,
-        int duration, int dayStart, int dayEnd);
+        
 };
