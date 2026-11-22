@@ -25,7 +25,7 @@ class NotificationService {
 public:
     void subscribe(Observer* o);
     void unsubscribe(Observer* o);
-    
+    void notify(const ScheduleChange& change) const;
 
 private:
     std::vector<Observer*> observers_;
