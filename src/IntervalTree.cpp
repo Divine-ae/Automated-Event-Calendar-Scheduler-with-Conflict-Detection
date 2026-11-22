@@ -6,13 +6,7 @@ void IntervalTree::update(Node& n) {
     n.maxEnd = std::max({n.slot.end(), mx(n.left), mx(n.right)});
 }
 
-void IntervalTree::rotateRight(std::unique_ptr<Node>& y) {
-    auto x = std::move(y->left);
-    y->left = std::move(x->right);
-    update(*y);
-    x->right = std::move(y);
-    update(*x);
-    y = std::move(x);
+
 }
 
 void IntervalTree::rotateLeft(std::unique_ptr<Node>& x) {
