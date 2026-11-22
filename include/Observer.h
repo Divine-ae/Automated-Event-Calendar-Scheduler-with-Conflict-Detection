@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
-#include "TimeSlot.h"
+#include "TimeSlot.h" 
 
 // What changed on a calendar (payload sent to observers).
 struct ScheduleChange {

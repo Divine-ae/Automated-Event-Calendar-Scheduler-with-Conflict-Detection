@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,23 +12,37 @@
         <h2 class="logo">◈ ChronoSync</h2>
 
         <p class="menu-label">WORKSPACE</p>
-        <nav>
-            <a href="#" class="active">▦ Dashboard</a>
+        <nav id="nav">
+            <a href="#top" class="active">▦ Dashboard</a>
             <a href="#calendar">▣ Calendar</a>
             <a href="#events">◷ My Events</a>
-            <a href="#conflicts">⚡ Conflicts</a>
+            <a href="#tasks">☰ Task Scheduler</a>
+            <a href="#team">◎ Team Slots</a>
+            <a href="#conflicts">⚡ Activity</a>
         </nav>
 
         <div class="sidebar-bottom">
-            <div class="avatar">CS</div>
-            <div>
-                <strong>My Workspace</strong>
-                <p>Personal Scheduler</p>
+            <div class="who">
+                <div class="avatar" id="avatar">CS</div>
+                <div>
+                    <p class="menu-label">CALENDAR OF</p>
+                    <strong id="who-name">—</strong>
+                </div>
+            </div>
+            <div class="user-row">
+                <select id="user-select" aria-label="Switch calendar"></select>
+                <button type="button" id="add-user-btn" class="icon-btn" title="Add calendar" aria-label="Add calendar">+</button>
+                <button type="button" id="remove-user-btn" class="icon-btn danger" title="Remove this calendar" aria-label="Remove calendar">✕</button>
             </div>
         </div>
     </aside>
 
-    <main class="main-content">
+    <main class="main-content" id="top">
+
+        <div id="offline-banner" class="banner" hidden>
+            <strong>Can't reach the ChronoSync server.</strong>
+            <span id="offline-detail">Start it with <code>make serve</code> and open <code>http://localhost:8080</code>.</span>
+        </div>
 
         <header class="topbar">
             <div>
@@ -38,38 +51,48 @@
                 <p class="muted">Plan smarter. Never double-book.</p>
             </div>
             <div class="top-actions">
-                <span class="status">● System Ready</span>
-                <a href="#add-event" class="primary-btn">+ New Event</a>
+                <span class="status" id="status">● Connecting…</span>
+                <button type="button" class="primary-btn" id="new-event-btn">+ New Event</button>
             </div>
         </header>
+
+        <!-- First-run screen: shown while there are no users -->
+        <section class="panel welcome" id="welcome" hidden>
+            <h2>Welcome to ChronoSync</h2>
+            <p class="muted">Create a calendar to get started, or load a sample week with two people to explore conflict detection, priority bumping and team scheduling.</p>
+            <form id="welcome-form" class="inline-form">
+                <input type="text" id="welcome-name" placeholder="Your name" maxlength="40" required autocomplete="off">
+                <button type="submit" class="primary-btn">Create calendar</button>
+                <button type="button" class="ghost-btn" id="demo-btn">Load demo data</button>
+            </form>
+        </section>
+
+        <div id="app" hidden>
 
         <section class="stats">
             <article class="stat-card">
                 <span class="stat-icon purple">▦</span>
                 <p>Total Events</p>
-                <h2>12</h2>
-                <small>This week</small>
+                <h2 id="stat-total">0</h2>
+                <small id="stat-total-sub">All scheduled</small>
             </article>
-
             <article class="stat-card">
                 <span class="stat-icon blue">◷</span>
-                <p>Upcoming</p>
-                <h2>04</h2>
-                <small>Next 24 hours</small>
+                <p>Today</p>
+                <h2 id="stat-today">0</h2>
+                <small id="stat-today-sub">Nothing scheduled</small>
             </article>
-
             <article class="stat-card">
                 <span class="stat-icon green">✓</span>
-                <p>Free Time Slots</p>
-                <h2>08</h2>
-                <small>Available this week</small>
+                <p>Free Time Today</p>
+                <h2 id="stat-free">0h</h2>
+                <small id="stat-free-sub">8 AM – 8 PM window</small>
             </article>
-
             <article class="stat-card">
                 <span class="stat-icon orange">⚡</span>
-                <p>Conflicts</p>
-                <h2>01</h2>
-                <small>Sample dashboard data</small>
+                <p>Conflicts Blocked</p>
+                <h2 id="stat-conflicts">0</h2>
+                <small id="stat-conflicts-sub">Double-bookings prevented</small>
             </article>
         </section>
 
@@ -79,60 +102,25 @@
                 <div class="panel-heading">
                     <div>
                         <h2>Weekly Schedule</h2>
-                        <p class="muted">Your week at a glance</p>
+                        <p class="muted">Click an empty slot to add an event · click an event to edit</p>
                     </div>
-                    <span class="week-label">OCT 19 – 25</span>
+                    <div class="week-nav">
+                        <button type="button" class="ghost-btn small" id="prev-week" aria-label="Previous week">‹</button>
+                        <span class="week-label" id="week-label">—</span>
+                        <button type="button" class="ghost-btn small" id="next-week" aria-label="Next week">›</button>
+                        <button type="button" class="ghost-btn small" id="today-btn">Today</button>
+                    </div>
                 </div>
 
-                <div class="calendar">
-                    <div class="day-heading"></div>
-                    <div class="day-heading">MON <b>19</b></div>
-                    <div class="day-heading">TUE <b>20</b></div>
-                    <div class="day-heading">WED <b>21</b></div>
-                    <div class="day-heading">THU <b>22</b></div>
-                    <div class="day-heading">FRI <b>23</b></div>
-
-                    <div class="time">09:00</div>
-                    <div class="slot purple-event">Team Meeting</div>
-                    <div class="slot"></div>
-                    <div class="slot"></div>
-                    <div class="slot blue-event">Project Work</div>
-                    <div class="slot"></div>
-
-                    <div class="time">10:00</div>
-                    <div class="slot"></div>
-                    <div class="slot blue-event">Study Time</div>
-                    <div class="slot green-event">Free Slot</div>
-                    <div class="slot"></div>
-                    <div class="slot purple-event">Review</div>
-
-                    <div class="time">11:00</div>
-                    <div class="slot"></div>
-                    <div class="slot"></div>
-                    <div class="slot"></div>
-                    <div class="slot"></div>
-                    <div class="slot"></div>
-
-                    <div class="time">12:00</div>
-                    <div class="slot orange-event">Deadline</div>
-                    <div class="slot"></div>
-                    <div class="slot blue-event">Coding</div>
-                    <div class="slot"></div>
-                    <div class="slot"></div>
-
-                    <div class="time">13:00</div>
-                    <div class="slot"></div>
-                    <div class="slot"></div>
-                    <div class="slot"></div>
-                    <div class="slot green-event">Free Slot</div>
-                    <div class="slot"></div>
-                </div>
+                <div class="week-scroll"><div class="week" id="week"></div></div>
 
                 <div class="legend">
-                    <span><i class="dot purple-dot"></i> Meetings</span>
-                    <span><i class="dot blue-dot"></i> Work</span>
-                    <span><i class="dot green-dot"></i> Free time</span>
-                    <span><i class="dot orange-dot"></i> Deadlines</span>
+                    <span><i class="dot p1-dot"></i> Low</span>
+                    <span><i class="dot p2-dot"></i> Normal</span>
+                    <span><i class="dot p3-dot"></i> High</span>
+                    <span><i class="dot p4-dot"></i> Urgent</span>
+                    <span><i class="dot p5-dot"></i> Critical</span>
+                    <label class="toggle"><input type="checkbox" id="show-free"> Highlight free time</label>
                 </div>
             </article>
 
@@ -140,102 +128,176 @@
 
                 <article class="panel" id="conflicts">
                     <div class="panel-heading">
-                        <h2>Conflict Monitor</h2>
-                        <span class="warning-badge">1 Alert</span>
-                    </div>
-
-                    <div class="alert-card">
-                        <span class="alert-icon">!</span>
-                        <div>
-                            <strong>Overlapping events</strong>
-                            <p>Two events may occupy the same time slot.</p>
-                            <small>Sample alert — not live detection</small>
+                        <h2>Activity</h2>
+                        <div class="heading-actions">
+                            <span class="warning-badge" id="activity-badge">0 alerts</span>
+                            <button type="button" class="text-btn" id="clear-activity" hidden>Clear</button>
                         </div>
                     </div>
-
-                    <a href="#events" class="text-link">View event list →</a>
+                    <div id="activity-list"></div>
                 </article>
 
-                <article class="panel" id="events">
+                <article class="panel">
                     <div class="panel-heading">
                         <h2>Upcoming Events</h2>
-                        <a href="#add-event" class="text-link">+ Add</a>
+                        <button type="button" class="text-btn" id="add-upcoming">+ Add</button>
                     </div>
-
-                    <div class="event-row">
-                        <div class="event-date">
-                            <b>20</b><span>OCT</span>
-                        </div>
-                        <div>
-                            <strong>Team Stand-up</strong>
-                            <p>09:00 – 10:00 AM</p>
-                        </div>
-                        <span class="event-dot purple-dot"></span>
-                    </div>
-
-                    <div class="event-row">
-                        <div class="event-date">
-                            <b>20</b><span>OCT</span>
-                        </div>
-                        <div>
-                            <strong>Project Development</strong>
-                            <p>11:00 AM – 12:00 PM</p>
-                        </div>
-                        <span class="event-dot blue-dot"></span>
-                    </div>
-
-                    <div class="event-row">
-                        <div class="event-date">
-                            <b>21</b><span>OCT</span>
-                        </div>
-                        <div>
-                            <strong>Code Review</strong>
-                            <p>10:00 – 11:00 AM</p>
-                        </div>
-                        <span class="event-dot green-dot"></span>
-                    </div>
+                    <div id="upcoming-list"></div>
                 </article>
 
             </div>
         </section>
 
-        
-<section class="panel add-event" id="add-event">
-    <h2>Quick Event Details</h2>
-    <p class="muted">Add an event to your schedule.</p>
+        <section class="two-col">
 
-    <form id="event-form">
-        <label>
-            Event name
-            <input type="text" id="event-title"
-                   placeholder="e.g. Project meeting" required>
-        </label>
+            <article class="panel" id="tasks">
+                <div class="panel-heading">
+                    <div>
+                        <h2>Task Scheduler</h2>
+                        <p class="muted">Queue tasks, then let the engine place them in free time.</p>
+                    </div>
+                </div>
 
-        <label>
-            Date
-            <input type="date" id="event-date" required>
-        </label>
+                <form id="task-form" class="form-grid">
+                    <label class="span-2">Task
+                        <input type="text" id="task-title" placeholder="e.g. Write report" maxlength="120" required>
+                    </label>
+                    <label>Day
+                        <input type="date" id="task-date" required>
+                    </label>
+                    <label>Duration
+                        <select id="task-duration">
+                            <option value="15">15 min</option><option value="30">30 min</option>
+                            <option value="45">45 min</option><option value="60" selected>1 hour</option>
+                            <option value="90">1.5 hours</option><option value="120">2 hours</option>
+                            <option value="180">3 hours</option>
+                        </select>
+                    </label>
+                    <label>Finish by
+                        <input type="time" id="task-deadline" value="18:00" required>
+                    </label>
+                    <label>Priority
+                        <select id="task-priority"></select>
+                    </label>
+                    <button type="submit" class="primary-btn span-2">Add to queue</button>
+                </form>
 
-        <label>
-            Start time
-            <input type="time" id="event-start" required>
-        </label>
+                <div class="strategy-row">
+                    <span class="muted">Order by</span>
+                    <div class="segmented" id="strategy" role="group" aria-label="Scheduling strategy">
+                        <button type="button" data-strategy="EDF" class="active" title="Earliest Deadline First">Earliest deadline</button>
+                        <button type="button" data-strategy="SDF" title="Shortest Duration First">Shortest first</button>
+                    </div>
+                </div>
 
-        <label>
-            End time
-            <input type="time" id="event-end" required>
-        </label>
+                <div id="task-list"></div>
+                <button type="button" class="primary-btn wide" id="schedule-btn" disabled>⚡ Auto-schedule queue</button>
+            </article>
 
-        <button type="submit" class="primary-btn">
-            Create Event
-        </button>
-    </form>
-</section>
+            <article class="panel" id="team">
+                <div class="panel-heading">
+                    <div>
+                        <h2>Team Slots</h2>
+                        <p class="muted">Find a time when everyone selected is free.</p>
+                    </div>
+                </div>
 
+                <form id="team-form" class="form-grid">
+                    <fieldset class="span-2">
+                        <legend>Who</legend>
+                        <div id="team-users" class="chip-row"></div>
+                    </fieldset>
+                    <label>Day
+                        <input type="date" id="team-date" required>
+                    </label>
+                    <label>Length
+                        <select id="team-duration">
+                            <option value="30">30 min</option><option value="45">45 min</option>
+                            <option value="60" selected>1 hour</option><option value="90">1.5 hours</option>
+                            <option value="120">2 hours</option>
+                        </select>
+                    </label>
+                    <button type="submit" class="primary-btn span-2">Find common free time</button>
+                </form>
+
+                <div id="team-results"></div>
+            </article>
+
+        </section>
+
+        <section class="panel" id="events">
+            <div class="panel-heading">
+                <div>
+                    <h2>My Events</h2>
+                    <p class="muted" id="events-sub">All events on this calendar</p>
+                </div>
+                <label class="toggle"><input type="checkbox" id="show-past"> Include past events</label>
+            </div>
+            <div id="event-list"></div>
+        </section>
+
+        </div><!-- /#app -->
 
         <footer>ChronoSync © 2026 · Smart scheduling, simplified.</footer>
-
     </main>
+
+    <!-- Event dialog (create / edit) -->
+    <dialog id="event-dialog">
+        <form id="event-form" method="dialog" novalidate>
+            <div class="dialog-head">
+                <h2 id="dialog-title">New Event</h2>
+                <button type="button" class="icon-btn" id="dialog-close" aria-label="Close">✕</button>
+            </div>
+
+            <div class="form-grid">
+                <label class="span-2">Event name
+                    <input type="text" id="event-title" placeholder="e.g. Project meeting" maxlength="120" required autocomplete="off">
+                </label>
+                <label>Date
+                    <input type="date" id="event-date" required>
+                </label>
+                <label>Priority
+                    <select id="event-priority"></select>
+                </label>
+                <label>Start time
+                    <input type="time" id="event-start" required>
+                </label>
+                <label>End time
+                    <input type="time" id="event-end" required>
+                </label>
+            </div>
+
+            <div id="check-box" class="check-box" aria-live="polite"></div>
+
+            <div class="dialog-actions">
+                <button type="button" class="danger-btn" id="event-delete" hidden>Delete</button>
+                <span class="spacer"></span>
+                <button type="button" class="ghost-btn" id="event-cancel">Cancel</button>
+                <button type="submit" class="primary-btn" id="event-submit">Create Event</button>
+            </div>
+        </form>
+    </dialog>
+
+    <!-- Add-user dialog -->
+    <dialog id="user-dialog">
+        <form id="user-form" method="dialog">
+            <div class="dialog-head">
+                <h2>Add a calendar</h2>
+                <button type="button" class="icon-btn" id="user-close" aria-label="Close">✕</button>
+            </div>
+            <label>Name
+                <input type="text" id="user-name" maxlength="40" placeholder="e.g. Priya" required autocomplete="off">
+            </label>
+            <div class="dialog-actions">
+                <span class="spacer"></span>
+                <button type="button" class="ghost-btn" id="user-cancel">Cancel</button>
+                <button type="submit" class="primary-btn">Add</button>
+            </div>
+        </form>
+    </dialog>
+
+    <div id="toasts" class="toasts" aria-live="polite"></div>
+
     <script src="script.js"></script>
 </body>
 </html>

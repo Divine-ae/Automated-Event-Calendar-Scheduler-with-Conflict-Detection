@@ -1,3 +1,4 @@
+
 build/
 *.o
 *.exe
@@ -5,4 +6,5 @@ build/
 .vscode/
 .idea/
 
+# Local application data
 data/
