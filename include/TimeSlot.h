@@ -5,7 +5,7 @@
 // Encapsulates validation so an invalid slot can never exist.
 class TimeSlot {
 public:
-    
+    TimeSlot(int start, int end);
 
     int start() const { return start_; }
     int end() const { return end_; }
