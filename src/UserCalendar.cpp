@@ -1,7 +1,11 @@
 #include "UserCalendar.h"
 #include <algorithm>
 
-
+bool UserCalendar::addEvent(const Event& e) {
+    if (events_.count(e.id()) || tree_.anyOverlap(e.slot())) return false;
+    events_.emplace(e.id(), e);
+    tree_.insert(e.slot(), e.id());
+    return true;
 }
 
 bool UserCalendar::removeEvent(int id) {
