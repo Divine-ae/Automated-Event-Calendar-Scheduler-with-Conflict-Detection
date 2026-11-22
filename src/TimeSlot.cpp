@@ -3,7 +3,8 @@
 #include <stdexcept>
 
 TimeSlot::TimeSlot(int start, int end) : start_(start), end_(end) {
-  
+    if (start < 0 || end <= start)
+        throw std::invalid_argument("TimeSlot: need 0 <= start < end");
 }
 
 bool TimeSlot::overlaps(const TimeSlot& o) const {
