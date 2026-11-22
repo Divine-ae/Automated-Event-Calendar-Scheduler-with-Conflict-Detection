@@ -1,11 +1,4 @@
-#include "Observer.h"
-#include <algorithm>
-#include <iostream>
 
-void NotificationService::subscribe(Observer* o) { observers_.push_back(o); }
-
-void NotificationService::unsubscribe(Observer* o) {
-    observers_.erase(std::remove(observers_.begin(), observers_.end(), o), observers_.end());
 }
 
 void NotificationService::notify(const ScheduleChange& c) const {
