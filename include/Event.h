@@ -22,5 +22,5 @@ private:
     std::string title_;
     std::string owner_;
     TimeSlot slot_;
-    
+    int priority_;
 };
