@@ -8,5 +8,5 @@ struct Task {
     std::string owner;
     int duration;   // minutes
     int deadline;   // minutes from midnight; task must finish by this time
-   // higher = more important
+    int priority;   // higher = more important
 };
