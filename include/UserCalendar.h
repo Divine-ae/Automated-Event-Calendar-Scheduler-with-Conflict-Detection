@@ -1,10 +1,4 @@
-#pragma once
-#include <map>
-#include <optional>
-#include <string>
-#include <vector>
-#include "Event.h"
-#include "IntervalTree.h"
+
 
 // One user's calendar. Events are kept in a map (by id) and indexed
 // in an interval tree for fast conflict checks.
