@@ -5,6 +5,7 @@
 // A scheduled event on a user's calendar. Fields are private (encapsulation).
 class Event {
 public:
+
     Event(int id, std::string title, std::string owner, TimeSlot slot, int priority = 1);
 
     int id() const { return id_; }
