@@ -5,6 +5,5 @@ build/
 *.out
 .vscode/
 .idea/
-
 # Local application data
 data/
