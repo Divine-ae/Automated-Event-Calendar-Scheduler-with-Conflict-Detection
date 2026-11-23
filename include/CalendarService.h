@@ -1,4 +1,5 @@
 #pragma once
+
 #include <ctime>
 #include <map>
 #include <optional>
@@ -20,6 +21,7 @@
 //
 // Not thread-safe: the HTTP layer serialises access with a mutex.
 class CalendarService {
+
 public:
     static constexpr int kDayStart = 8 * 60;    // working window used by the scheduler
     static constexpr int kDayEnd   = 20 * 60;
