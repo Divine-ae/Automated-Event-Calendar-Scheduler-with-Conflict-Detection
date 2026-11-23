@@ -26,3 +26,4 @@ ENV PORT=10000
 EXPOSE 10000
 
 CMD ["sh", "-c", "./chronosync_server --host 0.0.0.0 --port ${PORT:-10000} --data /tmp/chronosync.json --frontend /app/frontend"]
+
